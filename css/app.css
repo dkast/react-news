@@ -1,0 +1,57 @@
+/*Francisco Daniel Castillejo Flores 2015*/
+
+/*Items*/
+.hostname {
+	font-family: "SourceSansProBold", Helvetica, Arial, sans-serif;
+}
+
+.title {
+	display: block;
+	font-family: "SourceSansProSemiBold", Helvetica, Arial, sans-serif;
+	font-size: 1.4em;
+}
+
+
+.title a:visited {
+	color: #aab2bd;
+}
+
+.title a:hover {
+	color: #009dcd
+}
+
+.counter {
+	display: block;
+	margin-top: 5px;
+	font-family: "SourceSansProBold", Helvetica, Arial, sans-serif;
+}
+
+.item-entry {
+	margin: 10px 0;
+}
+
+.item-counter {
+	padding-left: 0;
+}
+
+.item-counter .btn{
+	margin: 15px 0;
+}
+
+.btn-purple.btn-embossed[disabled] {
+	color: #656d78;
+	/*background-color: #f5f7fa;*/
+	-webkit-box-shadow: 0 5px #ccd1d9;
+  	box-shadow: 0 5px #ccd1d9;
+}
+
+.item-link {
+	border-bottom: 1px solid #e6e9ed;
+	padding: 10px 0;
+}
+
+.item-meta .separator {
+	margin: 0 0.5em;
+	font-family: "SourceSansProBold", Helvetica, Arial, sans-serif;
+	font-size: 0.8em;
+}

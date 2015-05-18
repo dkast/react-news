@@ -1,0 +1,22 @@
+{
+  "name": "cocoadev-react",
+  "main": "js/app.js",
+  "dependencies": {
+    "parse": "^1.4.0",
+    "parse-react": "^0.2.0",
+    "react": "^0.13.0",
+    "react-cookie": "^0.1.8"
+  },
+  "devDependencies": {
+    "reactify": " ^0.15.2",
+    "watchify": " ^2.1.1"
+  },
+  "scripts": {
+    "start": "watchify -o js/bundle.js -v -d js/app.js"
+  },
+  "browserify": {
+    "transform": [
+      "reactify"
+    ]
+  }
+}
