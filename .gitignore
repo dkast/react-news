@@ -28,3 +28,7 @@ node_modules
 
 # Bundle
 js/bundle.js
+
+# Sublime
+react-news.sublime-project
+react-news.sublime-workspace

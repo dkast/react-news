@@ -1,4 +1,7 @@
 var React = require('react');
+// Router
+var Router = require('react-router');
+var Link = Router.Link;
 
 var PrettyDate = require('./PrettyDate.react.js');
 
@@ -23,7 +26,7 @@ var ItemEntry = React.createClass({
 					<div className="item-meta text-muted">
 						<span className="user">
 							From &nbsp;
-							<a href={"#/user/" + this.props.item.createdBy.username}>{this.props.item.createdBy.username}</a>
+							<Link to="user" params={{userId: this.props.item.createdBy.username}}>{this.props.item.createdBy.username}</Link>
 						</span>
 						<span className="separator">&#8226;</span>
 						<span className="ago"><PrettyDate value={this.props.item.createdAt} /></span>

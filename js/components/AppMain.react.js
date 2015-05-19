@@ -2,6 +2,12 @@ var Parse = require('parse').Parse;
 var React = require('react');
 // ParseReact sits on top of the Parse singleton
 var ParseReact = require('parse-react');
+// Router
+var Router = require('react-router');
+var DefaultRoute = Router.DefaultRoute;
+var Link = Router.Link;
+var Route = Router.Route;
+var RouteHandler = Router.RouteHandler;
 
 var LoginForm = require('./LoginForm.react.js');
 var LoginButton = require('./LoginButton.react.js');
@@ -24,15 +30,6 @@ var AppMain = React.createClass({
 		return {
 			user: ParseReact.currentUser
 		};
-	},
-
-	componentDidMount: function() {
-		var setState = this.setState;
-		var router = Router ({
-			'/': setState.bind(this, {renderComponent: 'ItemList'}),
-			'/user': setState.bind(this, {renderComponent: 'User'})
-		});
-		router.init('/');
 	},
 
 	render: function() {
@@ -81,7 +78,7 @@ var AppMain = React.createClass({
 							</div>
 						</nav>
 						<div className="item-container">
-							{renderComponent}
+							<RouteHandler />
 						</div>
 					</div>
 				</div>

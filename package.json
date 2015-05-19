@@ -4,8 +4,9 @@
   "dependencies": {
     "parse": "^1.4.0",
     "parse-react": "^0.2.0",
-    "react": "^0.13.0",
-    "react-cookie": "^0.1.8"
+    "react": "^0.13.3",
+    "react-cookie": "^0.1.8",
+    "react-router": "^0.13.3"
   },
   "devDependencies": {
     "reactify": " ^0.15.2",
