@@ -3,9 +3,7 @@ var React = require('react');
 var LoginButton = React.createClass({
 	render: function() {
 		return (
-			<span className="loginButton">
-				<a href="#" data-toggle="modal" data-target="#loginModal">Log in</a>
-			</span>
+			<a href="#" data-toggle="modal" data-target="#loginModal" className="login-button">Log in</a>
 		);
 	}
 });

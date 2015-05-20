@@ -42,12 +42,9 @@ var AppMain = React.createClass({
 			<div className="container-fluid">
 				<div className="row">
 					<nav className="navbar navbar-default" role="navigation">
-						<div className="col-xs-12 col-xs-offset-0 col-sm-8 col-sm-offset-2">
+						<div className="col-xs-12 col-xs-offset-0 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
 							<div className="navbar-header">
 								<a href="#" className="navbar-brand">React</a>
-							</div>
-							<div className="navbar-text navbar-right">
-								{loginButton}
 							</div>
 							<ul className="nav navbar-nav navbar-right">
 								<li>
@@ -55,10 +52,13 @@ var AppMain = React.createClass({
 										<span className="icon-circle-plus"></span> Add Resource
 									</a>
 								</li>
+								<li>
+									{loginButton}
+								</li>
 							</ul>
 						</div>
 					</nav>
-					<div className="col-xs-12 col-xs-offset-0 col-sm-8 col-sm-offset-2">
+					<div className="col-xs-12 col-xs-offset-0 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
 						
 						<div className="item-container">
 							<RouteHandler />

@@ -18,6 +18,8 @@ var ItemList = require('./components/ItemList.react.js');
 var routes = (
 	<Route name="app" path="/" handler={AppMain}>
 		<Route name="user" path="/user/:userId" handler={User} />
+		<Route name="page" path="/page/:page" handler={ItemList}>
+		<Route/>
 		<DefaultRoute handler={ItemList} />
 	</Route>
 );

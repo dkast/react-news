@@ -3,11 +3,18 @@ var Parse = require('parse').Parse;
 var ParseReact = require('parse-react');
 var Cookie = require('react-cookie');
 var utils = require('../utils');
+var Router = require('react-router');
 
 var ItemEntry = require('./ItemEntry.react.js');
 
+var Link = Router.Link;
+
 var ItemList = React.createClass({
 	mixins: [ParseReact.Mixin],
+
+	contextTypes: {
+		router: React.PropTypes.func
+	},
 
 	getInitialState: function() {
 		return {
@@ -15,6 +22,12 @@ var ItemList = React.createClass({
 			limit: 5,
 			page: 1,
 		};
+	},
+
+	componentWillReceiveProps: function(nextProps) {
+		this.setState({
+			//page: this.context.router.getCurrentParams().page 
+		});
 	},
 
 	observe: function(props, state) {
@@ -96,7 +109,7 @@ var ItemList = React.createClass({
 				})}
 				<div className="row">
 					<div className="col-xs-12 text-center">
-						<button className="btn btn-default more">More</button>
+						<Link to="page" params={{page: this.state.page}} className="btn btn-default more">More</Link>
 					</div>
 				</div>
 			</div>
