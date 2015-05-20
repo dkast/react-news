@@ -11,21 +11,34 @@ var ItemList = React.createClass({
 
 	getInitialState: function() {
 		return {
-			token: Cookie.load('token')
+			token: Cookie.load('token'),
+			limit: 5,
+			page: 1,
 		};
 	},
 
 	observe: function(props, state) {
 		var self = this;
+		var limit = this.state.limit;
+		var skip = (this.state.page -1) * limit;
+		console.log(skip);
+		console.log(limit);
 		return {
-			items: (new Parse.Query('Links')).descending('createdAt').include('createdBy'),
+			items: (new Parse.Query('Links'))
+				.descending('createdAt')
+				.include('createdBy')
+				.skip(skip)
+				.limit(limit),
 			votes: (self.getVotes()),
 			user: ParseReact.currentUser
 		};
 	},
 
 	getVotes: function() {
+		var limit = this.state.limit;
+		var skip = (this.state.page -1) * limit;
 		var linksQuery = new Parse.Query('Links');
+
 		linksQuery.descending('createdAt');
 		linksQuery.include('createdBy');
 
@@ -40,12 +53,6 @@ var ItemList = React.createClass({
 		var username;
 		var token;
 
-		if(this.data.user) {
-			username = this.data.user.username;
-		} else {
-			username = null;
-		}
-
 		if(this.state.token) {
 			token = this.state.token;
 		} else {
@@ -53,7 +60,7 @@ var ItemList = React.createClass({
 		}
 
 		return (
-			<div className={this.pendingQueries().lenght ? 'item-list loading' : 'item-list'}>
+			<div className={this.pendingQueries().length ? 'item-list loading' : 'item-list'}>
 				{this.data.items.map(function(i) {
 					//loop items
 
@@ -63,6 +70,13 @@ var ItemList = React.createClass({
 						// if have votes
 						if (i.id == j.link.id) {
 							if (j.user) {
+
+								if(self.data.user) {
+									username = self.data.user.username;
+								} else {
+									username = null;
+								}
+
 								if (j.user.username === username) {
 									disableVote = true;
 								}
@@ -80,6 +94,11 @@ var ItemList = React.createClass({
 						<ItemEntry key={i.id} item={i} onUpVoteClick={self.handleUpVoteClick} disableVote={disableVote} />
 					);
 				})}
+				<div className="row">
+					<div className="col-xs-12 text-center">
+						<button className="btn btn-default more">More</button>
+					</div>
+				</div>
 			</div>
 		);
 	},
@@ -97,12 +116,10 @@ var ItemList = React.createClass({
 		if(token) {
 			console.log(token);
 		} else {
-			console.log('generando token');
 			token = utils.generateUUID();
 			this.setState({
 				token: token
 			});
-			console.log(token);
 			//save token
 			Cookie.save('token', token);
 		}

@@ -1,5 +1,26 @@
 /*Francisco Daniel Castillejo Flores 2015*/
 
+/*Navbar*/
+.navbar {
+	border-radius: 0px;
+}
+
+.navbar-default {
+	border: none;
+	/*border-bottom: 1px solid #d6e1e5;*/
+	background-color: #967adc;
+	/*background: -webkit-linear-gradient(90deg, #00c6ff 10%, #0072ff 90%);*/ /* Chrome 10+, Saf5.1+ */
+	/*background:    -moz-linear-gradient(90deg, #00c6ff 10%, #0072ff 90%);*/ /* FF3.6+ */
+	/*background:     -ms-linear-gradient(90deg, #00c6ff 10%, #0072ff 90%);*/ /* IE10 */
+	/*background:      -o-linear-gradient(90deg, #00c6ff 10%, #0072ff 90%);*/ /* Opera 11.10+ */
+	/*background:         linear-gradient(90deg, #00c6ff 10%, #0072ff 90%);*/ /* W3C */
+        
+}
+
+.navbar-brand {
+	padding: 28px 0;
+}
+
 /*Items*/
 .hostname {
 	font-family: "SourceSansProBold", Helvetica, Arial, sans-serif;
@@ -54,4 +75,18 @@
 	margin: 0 0.5em;
 	font-family: "SourceSansProBold", Helvetica, Arial, sans-serif;
 	font-size: 0.8em;
+}
+
+.loading {
+	background-color: red;
+}
+
+.item-list .more {
+	margin: 20px 0;
+}
+
+footer {
+	border-top: 2px solid #d6e1e5;
+	padding: 3em 0 1em;
+	margin: 1em 0 2em;
 }

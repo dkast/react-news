@@ -13,7 +13,7 @@
     "watchify": " ^2.1.1"
   },
   "scripts": {
-    "start": "watchify -o js/bundle.js -v -d js/app.js"
+    "watch": "watchify -o js/bundle.js -v -d js/app.js"
   },
   "browserify": {
     "transform": [

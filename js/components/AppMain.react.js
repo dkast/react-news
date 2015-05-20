@@ -19,13 +19,6 @@ var ItemCreator = require('./ItemCreator.react.js');
 var AppMain = React.createClass({
 	mixins: [ParseReact.Mixin],
 
-	getInitialState: function() {
-		return {
-			page: 1,
-			renderComponent: null
-		};
-	},
-
 	observe: function  () {
 		return {
 			user: ParseReact.currentUser
@@ -45,41 +38,34 @@ var AppMain = React.createClass({
 			itemCreator = null;
 		}
 
-		switch (this.state.renderComponent) {
-			case 'Itemlist':
-				renderComponent = <ItemList />;
-				break;
-			case 'User':
-				renderComponent = <User />;
-				break;
-			default:
-				renderComponent = <ItemList />;
-		}
-
 		return (
 			<div className="container-fluid">
 				<div className="row">
-					<div className="col-xs-12 col-xs-offset-0 col-sm-10 col-sm-offset-1">
-						<nav className="navbar navbar-inverse" role="navigation">
-							<div className="container-fluid">
-								<div className="navbar-header">
-									<a href="#" className="navbar-brand">React</a>
-								</div>
-								<div className="navbar-text navbar-right">
-									{loginButton}
-								</div>
-								<ul className="nav navbar-nav navbar-right">
-									<li>
-										<a href="#" data-toggle="modal" data-target="#addModal">
-											<span className="icon-circle-plus"></span> Add Resource
-										</a>
-									</li>
-								</ul>
+					<nav className="navbar navbar-default" role="navigation">
+						<div className="col-xs-12 col-xs-offset-0 col-sm-8 col-sm-offset-2">
+							<div className="navbar-header">
+								<a href="#" className="navbar-brand">React</a>
 							</div>
-						</nav>
+							<div className="navbar-text navbar-right">
+								{loginButton}
+							</div>
+							<ul className="nav navbar-nav navbar-right">
+								<li>
+									<a href="#" data-toggle="modal" data-target="#addModal">
+										<span className="icon-circle-plus"></span> Add Resource
+									</a>
+								</li>
+							</ul>
+						</div>
+					</nav>
+					<div className="col-xs-12 col-xs-offset-0 col-sm-8 col-sm-offset-2">
+						
 						<div className="item-container">
 							<RouteHandler />
 						</div>
+						<footer className="text-center text-muted">
+							Made with React + Parse
+						</footer>
 					</div>
 				</div>
 				{itemCreator}
