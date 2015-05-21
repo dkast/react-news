@@ -9,13 +9,13 @@ var ItemEntry = React.createClass({
 	render: function() {
 		return (
 			<div className="item-entry row">
-				<div className="item-counter col-xs-1">
-					<button className= {this.props.disableVote ? 'btn btn-purple btn-sm btn-embossed' : 'btn btn-purple btn-sm btn-embossed'} onClick={this.handleUpBtnClick} disabled={this.props.disableVote}>
+				<div className="item-counter col-xs-2 col-sm-1">
+					<button className= "btn btn-purple btn-sm btn-embossed" onClick={this.handleUpBtnClick} disabled={this.props.disableVote}>
 						<span className="icon-arrow-up"></span>
 						<span className="counter">{this.props.item.votes}</span>
 					</button>
 				</div>
-				<div className="item-link col-xs-11">
+				<div className="item-link col-xs-10 col-sm-11">
 					<span className="hostname text-muted">{this.props.item.hostname}</span>
 					<span className="title">
 						<a href={this.props.item.url} title={this.props.item.title} 

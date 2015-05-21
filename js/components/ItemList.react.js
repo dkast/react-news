@@ -6,6 +6,7 @@ var utils = require('../utils');
 var Router = require('react-router');
 
 var ItemEntry = require('./ItemEntry.react.js');
+var ItemMoreButton = require('./ItemMoreButton.react.js');
 
 var Link = Router.Link;
 
@@ -17,25 +18,38 @@ var ItemList = React.createClass({
 	},
 
 	getInitialState: function() {
+		var page;
+		if(this.context.router.getCurrentParams().page) {
+				page =  this.context.router.getCurrentParams().page;
+		} else {
+			page = 1;
+		}
 		return {
 			token: Cookie.load('token'),
 			limit: 5,
-			page: 1,
+			page: page,
 		};
 	},
 
 	componentWillReceiveProps: function(nextProps) {
-		this.setState({
-			//page: this.context.router.getCurrentParams().page 
-		});
+		if(this.context.router.getCurrentParams().page) {
+			this.setState({
+				page: this.context.router.getCurrentParams().page 
+			});
+		} else {
+			this.setState({
+				page: 1
+			});
+		}
+
+		// votes Query is a function, is not called automatically when state is changed
+		this.refreshQueries('votes');
 	},
 
 	observe: function(props, state) {
 		var self = this;
-		var limit = this.state.limit;
-		var skip = (this.state.page -1) * limit;
-		console.log(skip);
-		console.log(limit);
+		var limit = state.limit;
+		var skip = (state.page -1) * limit;
 		return {
 			items: (new Parse.Query('Links'))
 				.descending('createdAt')
@@ -50,10 +64,11 @@ var ItemList = React.createClass({
 	getVotes: function() {
 		var limit = this.state.limit;
 		var skip = (this.state.page -1) * limit;
-		var linksQuery = new Parse.Query('Links');
-
-		linksQuery.descending('createdAt');
-		linksQuery.include('createdBy');
+		var linksQuery = new Parse.Query('Links')
+			.descending('createdAt')
+			.include('createdBy')
+			.skip(skip)
+			.limit(limit);
 
 		var query = new Parse.Query('Votes');
 		query.matchesQuery('link', linksQuery);
@@ -65,11 +80,25 @@ var ItemList = React.createClass({
 		var self = this;
 		var username;
 		var token;
+		var nextPage;
+		var moreButton;
 
 		if(this.state.token) {
 			token = this.state.token;
 		} else {
 			token = null;
+		}
+
+		if(this.state.page) {
+			nextPage = parseInt(this.state.page) + 1;
+		} else {
+			nextPage = 1;
+		}
+
+		if(this.data.items.length == this.state.limit) {
+			moreButton = <ItemMoreButton nextPage={nextPage} />;
+		} else {
+			moreButton = null;
 		}
 
 		return (
@@ -107,11 +136,7 @@ var ItemList = React.createClass({
 						<ItemEntry key={i.id} item={i} onUpVoteClick={self.handleUpVoteClick} disableVote={disableVote} />
 					);
 				})}
-				<div className="row">
-					<div className="col-xs-12 text-center">
-						<Link to="page" params={{page: this.state.page}} className="btn btn-default more">More</Link>
-					</div>
-				</div>
+				{moreButton}
 			</div>
 		);
 	},

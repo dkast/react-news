@@ -1,4 +1,10 @@
 /*Francisco Daniel Castillejo Flores 2015*/
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:700,300,600,400);
+
+body {
+	line-height: 1.42857143;
+	font-family: "Open Sans", Helvetica, Arial, sans-serif;
+}
 
 /*Navbar*/
 .navbar {
@@ -8,7 +14,7 @@
 .navbar-default {
 	border: none;
 	/*border-bottom: 1px solid #d6e1e5;*/
-	background-color: #967adc;
+	background-color: #673ab7;
 	/*background: -webkit-linear-gradient(90deg, #00c6ff 10%, #0072ff 90%);*/ /* Chrome 10+, Saf5.1+ */
 	/*background:    -moz-linear-gradient(90deg, #00c6ff 10%, #0072ff 90%);*/ /* FF3.6+ */
 	/*background:     -ms-linear-gradient(90deg, #00c6ff 10%, #0072ff 90%);*/ /* IE10 */
@@ -17,19 +23,25 @@
         
 }
 
+.navbar-default .navbar-nav > li > a {
+	color: rgba(255, 255, 255, 0.8);
+	font-family: "Open Sans", Helvetica, Arial, sans-serif;
+	font-weight: 600;
+}
+
 .navbar-brand {
 	padding: 28px 0;
 }
 
 /*Items*/
 .hostname {
-	font-family: "SourceSansProBold", Helvetica, Arial, sans-serif;
+	font-weight: 700;
 }
 
 .title {
 	display: block;
-	font-family: "SourceSansProSemiBold", Helvetica, Arial, sans-serif;
 	font-size: 1.4em;
+	font-weight: 600;
 }
 
 
@@ -44,7 +56,6 @@
 .counter {
 	display: block;
 	margin-top: 5px;
-	font-family: "SourceSansProBold", Helvetica, Arial, sans-serif;
 }
 
 .item-entry {
@@ -71,10 +82,12 @@
 	padding: 10px 0;
 }
 
+.item-meta {
+	font-size: 0.8em;
+}
+
 .item-meta .separator {
 	margin: 0 0.5em;
-	font-family: "SourceSansProBold", Helvetica, Arial, sans-serif;
-	font-size: 0.8em;
 }
 
 .loading {
