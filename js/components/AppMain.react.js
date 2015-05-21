@@ -44,7 +44,9 @@ var AppMain = React.createClass({
 					<nav className="navbar navbar-default" role="navigation">
 						<div className="col-xs-12 col-xs-offset-0 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
 							<div className="navbar-header">
-								<Link to="app" className="navbar-brand">React</Link>
+								<Link to="app" className="navbar-brand">
+									<span className="icon-command"></span> Cocoa Kit
+								</Link>
 							</div>
 							<ul className="nav navbar-nav navbar-right">
 								<li>

@@ -29,6 +29,13 @@ body {
 	font-weight: 600;
 }
 
+.navbar-nav > li > a > [class^="icon-"], 
+.navbar-nav > li > a > [class*=" icon-"] {
+	line-height: 18px;
+	vertical-align: top;
+	margin-right: 5px;
+}
+
 .navbar-brand {
 	padding: 28px 0;
 }
