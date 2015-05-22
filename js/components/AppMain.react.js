@@ -9,6 +9,8 @@ var Link = Router.Link;
 var Route = Router.Route;
 var RouteHandler = Router.RouteHandler;
 
+var utils = require('../utils');
+
 var LoginForm = require('./LoginForm.react.js');
 var LoginButton = require('./LoginButton.react.js');
 var LogoutButton = require('./LogoutButton.react.js');
@@ -19,11 +21,23 @@ var ItemCreator = require('./ItemCreator.react.js');
 var AppMain = React.createClass({
 	mixins: [ParseReact.Mixin],
 
+	getInitialState: function() {
+		return {
+			appTitle: 'Cocoa Central'
+		};
+	},
+
 	observe: function  () {
 		return {
 			user: ParseReact.currentUser
 		};
 	},
+
+	// componentWillMount: function() {
+	// 	this.setState({
+	// 		appTitle: utils.getAppTitle()
+	// 	});
+	// },
 
 	render: function() {
 		var loginButton;
@@ -45,7 +59,8 @@ var AppMain = React.createClass({
 						<div className="col-xs-12 col-xs-offset-0 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
 							<div className="navbar-header">
 								<Link to="app" className="navbar-brand">
-									<span className="icon-command"></span> Cocoa Kit
+									<span className="icon-command"></span>
+									{this.state.appTitle}
 								</Link>
 							</div>
 							<ul className="nav navbar-nav navbar-right">

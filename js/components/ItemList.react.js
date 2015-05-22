@@ -26,7 +26,7 @@ var ItemList = React.createClass({
 		}
 		return {
 			token: Cookie.load('token'),
-			limit: 5,
+			limit: 10,
 			page: page,
 		};
 	},

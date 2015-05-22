@@ -11,7 +11,7 @@ var LoginForm = React.createClass({
 
 	render: function() {
 		return (
-			<div className="modal fade" id="loginModal">
+			<div className="modal jelly" id="loginModal">
 				<div className="modal-dialog">
 					<div className="modal-content">
 						<div className="modal-header">

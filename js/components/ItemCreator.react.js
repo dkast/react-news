@@ -19,7 +19,7 @@ var ItemCreator = React.createClass({
 
 	render: function() {
 		return (
-			<div className="modal fade" id="addModal">
+			<div className="modal jelly" id="addModal">
 				<div className="modal-dialog">
 					<div className="modal-content">
 						<div className="modal-header">
