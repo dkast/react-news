@@ -1,6 +1,17 @@
 var React = require('react');
 var Parse = require('parse').Parse;
 var ParseReact = require('parse-react');
+var MultiSelect = require('react-widgets/lib/MultiSelect');
+
+var TagItem = React.createClass({
+  render: function() {
+    var tag = this.props.item;
+    return (
+      <span className={"tag-" + tag}>
+        {tag}
+      </span>);
+  }
+});
 
 var ItemCreator = React.createClass({
 	mixins: [ParseReact.Mixin],
@@ -13,11 +24,14 @@ var ItemCreator = React.createClass({
 
 	getInitialState: function() {
 		return {
-			error: null
+			error: null,
+			tags: ['Obj-c', 'Swift', 'WatchKit', 'Control', 'Design', 'News', 'Video', 'Podcast', 'Tools', 'Bussiness'],
+			selectedTags: null
 		};
 	},
 
 	render: function() {
+		console.log('Render');
 		return (
 			<div className="modal jelly" id="addModal">
 				<div className="modal-dialog">
@@ -44,6 +58,14 @@ var ItemCreator = React.createClass({
 								</div>
 							</div>
 							<div className="form-group">
+								<MultiSelect 
+									defaultValue={this.state.selectedTags}
+									data={this.state.tags}
+									tagComponent={TagItem}
+									onChange={this.onMultiSelectChange} 
+									placeholder='Select Tags (Optional)'/>
+							</div>
+							<div className="form-group">
 								{
 									this.state.error ?
 									<div className="alert alert-danger">{this.state.error}</div> :
@@ -66,11 +88,18 @@ var ItemCreator = React.createClass({
 		);
 	},
 
+	onMultiSelectChange: function(value) {
+		this.setState({
+			selectedTags: value 
+		});
+	},
+
 	submit: function(e) {
 		var self = this;
 		var title = React.findDOMNode(this.refs.title).value;
 		var url = React.findDOMNode(this.refs.url).value;
 		var author = this.data.user;
+		var tags = this.state.selectedTags;
 
 		if (title.length && url.length) {
 			//validate hostname
@@ -90,13 +119,15 @@ var ItemCreator = React.createClass({
 				hostname: hostname,
 				createdBy: author,
 				votes: 1,
-				score: 0
+				score: 0,
+				tags: tags
 			}).dispatch().then(function() {
 				React.findDOMNode(self.refs.title).value='';
 				React.findDOMNode(self.refs.url).value='';
 				
 				self.setState({
-					error: null
+					error: null,
+					selectedTags: null,
 				});
 				$('#addModal').modal('hide');
 			}, function() {

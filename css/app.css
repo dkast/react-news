@@ -14,12 +14,12 @@ body {
 .navbar-default {
 	border: none;
 	/*border-bottom: 1px solid #d6e1e5;*/
-	background-color: #6E48AA;
-	background: -webkit-linear-gradient(90deg, #9D50BB 10%, #6E48AA 90%); /* Chrome 10+, Saf5.1+ */
-	background:    -moz-linear-gradient(90deg, #9D50BB 10%, #6E48AA 90%); /* FF3.6+ */
-	background:     -ms-linear-gradient(90deg, #9D50BB 10%, #6E48AA 90%); /* IE10 */
-	background:      -o-linear-gradient(90deg, #9D50BB 10%, #6E48AA 90%); /* Opera 11.10+ */
-	background:         linear-gradient(90deg, #9D50BB 10%, #6E48AA 90%); /* W3C */        
+	background-color: #6e48aa;
+	background: -webkit-linear-gradient(90deg, #9D50BB 10%, #6e48aa 90%); /* Chrome 10+, Saf5.1+ */
+	background:    -moz-linear-gradient(90deg, #9D50BB 10%, #6e48aa 90%); /* FF3.6+ */
+	background:     -ms-linear-gradient(90deg, #9D50BB 10%, #6e48aa 90%); /* IE10 */
+	background:      -o-linear-gradient(90deg, #9D50BB 10%, #6e48aa 90%); /* Opera 11.10+ */
+	background:         linear-gradient(90deg, #9D50BB 10%, #6e48aa 90%); /* W3C */        
 }
 
 .navbar-default .navbar-nav > li > a {
@@ -45,12 +45,34 @@ body {
 }
 
 .navbar-default .navbar-brand {
-  color: #fff;
+	color: #fff;
 }
 .navbar-default .navbar-brand:hover,
 .navbar-default .navbar-brand:focus {
-  color: rgba(255, 255, 255, 0.8);
-  background-color: transparent;
+	color: rgba(255, 255, 255, 0.8);
+	background-color: transparent;
+}
+
+.nav li a.dropdown-toggle > [class^="ss-"],
+.nav li a.dropdown-toggle > [class^="fa-"],
+.nav li a.dropdown-toggle > [class^="icon-"] {
+	position: relative;
+	top: 0;
+	font-size: 18px;
+	margin-left: 3px;
+	margin-right: 8px;
+}
+
+.navbar-nav .dropdown-menu {
+	border-width: 1px;
+	border: 1px solid rgba(0, 0, 0, .1);
+	-webkit-box-shadow: 0 2px 7px rgba(0, 0, 0, .1);
+	box-shadow: 0 2px 7px rgba(0, 0, 0, .1);
+}
+
+.dropdown-menu > li > a:hover {
+  background-color: #967adc;
+  color: #fff;
 }
 
 /*Items*/

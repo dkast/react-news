@@ -45,7 +45,7 @@ var AppMain = React.createClass({
 		var renderComponent;
 
 		if (this.data.user) {
-			loginButton = <LogoutButton />;
+			loginButton = <LogoutButton user={this.data.user} />;
 			itemCreator = <ItemCreator />;
 		} else {
 			loginButton = <LoginButton />;
@@ -69,9 +69,7 @@ var AppMain = React.createClass({
 										<span className="icon-circle-plus"></span> Add Resource
 									</a>
 								</li>
-								<li>
-									{loginButton}
-								</li>
+								{loginButton}
 							</ul>
 						</div>
 					</nav>
