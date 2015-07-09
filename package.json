@@ -2,8 +2,10 @@
   "name": "cocoadev-react",
   "main": "js/app.js",
   "dependencies": {
+    "halogen": "^0.1.8",
     "parse": "^1.4.0",
-    "parse-react": "^0.2.0",
+    "parse-react": "^0.3.0",
+    "query-string": "^2.3.0",
     "react": "^0.13.3",
     "react-cookie": "^0.1.8",
     "react-router": "^0.13.3",
@@ -14,7 +16,8 @@
     "watchify": " ^2.1.1"
   },
   "scripts": {
-    "watch": "watchify -o js/bundle.js -v -d js/app.js"
+    "watch": "watchify -o js/bundle.js -v -d js/app.js",
+    "build": "browserify -v -d js/app.js | uglifyjs -c > js/bundle.min.js"
   },
   "browserify": {
     "transform": [

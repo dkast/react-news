@@ -1,5 +1,6 @@
 var Parse = require('parse').Parse;
 var React = require('react');
+var querystring = require('query-string');
 
 var LoginForm = React.createClass({
 	getInitialState: function() {
@@ -18,10 +19,11 @@ var LoginForm = React.createClass({
 							<button type="button" className="close" data-dismiss="modal" arial-label="close">
 								<span className="icon-cross"></span>
 							</button>
-							<h4 className="modal-title">Log in</h4>
+							<h4 className="modal-title">Welcome!</h4>
 						</div>
 						<div className="modal-body">
-							<div className="tile tile-login">
+							<div className="lead text-center">
+								{/**
 								<div className="input-icon">
 									<span className="icon-head"></span>
 									<input type="text" className="form-control" 
@@ -32,6 +34,14 @@ var LoginForm = React.createClass({
 									<input type="password" className="form-control" 
 										placeholder="Password" ref="password" id="password"/>
 								</div>
+								**/}
+								<p>Please sign in with your Github account</p>
+								<button type="button" className="btn btn-purple btn-embossed"
+									onClick={this.authorize} >
+									<span className="ion-social-github"></span>
+									&nbsp;
+									Sign in With Github
+								</button>
 								{
 									this.state.error ?
 									<div className="alert alert-danger">{this.state.error}</div> :
@@ -39,6 +49,7 @@ var LoginForm = React.createClass({
 								}
 							</div>
 						</div>
+						{/**
 						<div className="modal-footer">
 							<button type="button" className="btn btn-primary" 
 								onClick={this.submit.bind(this, 'login')} >
@@ -49,6 +60,7 @@ var LoginForm = React.createClass({
 								Sign up
 							</button>
 						</div>
+						**/}
 					</div>
 				</div>
 			</div>
@@ -59,7 +71,7 @@ var LoginForm = React.createClass({
 	// 	$('#loginModal').modal('hide');
 	// },
 
-	submit:function(action) {
+	submit: function(action) {
 		var self = this;
 		var username = React.findDOMNode(this.refs.username).value;
 		var password = React.findDOMNode(this.refs.password).value;
@@ -80,7 +92,9 @@ var LoginForm = React.createClass({
 				console.log('signup');
 				var u = new Parse.User({
 					username: username,
-					password: password
+					password: password,
+					votes: 0,
+					posts: 0
 				});
 				u.signUp().then(function() {
 					$('#loginModal').modal('hide');
@@ -98,6 +112,10 @@ var LoginForm = React.createClass({
 				error: 'Please enter all fields'
 			});
 		}
+	},
+
+	authorize: function() {
+		window.location.href = '/authorize';
 	}
 });
 

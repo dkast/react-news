@@ -4,14 +4,23 @@ var Router = require('react-router');
 var Link = Router.Link;
 
 var PrettyDate = require('./PrettyDate.react.js');
+var ItemListTags = require('./ItemListTags.react.js');
 
 var ItemEntry = React.createClass({
 	render: function() {
+		var itemListTags;
+
+		if (this.props.item.tags) {
+			itemListTags = <ItemListTags data={this.props.item.tags} />;
+		} else {
+			itemListTags = null;
+		}
+
 		return (
 			<div className="item-entry row">
 				<div className="item-counter col-xs-2 col-sm-1">
 					<button className= "btn btn-purple btn-sm btn-embossed" onClick={this.handleUpBtnClick} disabled={this.props.disableVote}>
-						<span className="icon-arrow-up"></span>
+						<span className="ion-chevron-up"></span>
 						<span className="counter">{this.props.item.votes}</span>
 					</button>
 				</div>
@@ -30,6 +39,7 @@ var ItemEntry = React.createClass({
 						</span>
 						<span className="separator">&#8226;</span>
 						<span className="ago"><PrettyDate value={this.props.item.createdAt} /></span>
+						{itemListTags}
 					</div>
 				</div>
 			</div>

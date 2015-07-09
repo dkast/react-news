@@ -16,7 +16,7 @@ var TagItem = React.createClass({
 var ItemCreator = React.createClass({
 	mixins: [ParseReact.Mixin],
 
-	observe: function  () {
+	observe: function () {
 		return {
 			user: ParseReact.currentUser
 		};
@@ -31,7 +31,6 @@ var ItemCreator = React.createClass({
 	},
 
 	render: function() {
-		console.log('Render');
 		return (
 			<div className="modal jelly" id="addModal">
 				<div className="modal-dialog">
@@ -99,7 +98,7 @@ var ItemCreator = React.createClass({
 		var title = React.findDOMNode(this.refs.title).value;
 		var url = React.findDOMNode(this.refs.url).value;
 		var author = this.data.user;
-		var tags = this.state.selectedTags;
+		var tags = [];
 
 		if (title.length && url.length) {
 			//validate hostname
@@ -113,6 +112,22 @@ var ItemCreator = React.createClass({
 				return;
 			}
 
+			if (hostname === '') {
+				this.setState({
+					error: 'URL is not valid, please verify'
+				});
+				return;
+			}
+
+			if (this.state.selectedTags) {
+				tags = this.state.selectedTags;
+			}
+
+			var acl = new Parse.ACL(Parse.User.current());
+			acl.setPublicReadAccess(true);
+			// Access write to moderators
+			acl.setRoleWriteAccess('Moderator', true);
+
 			var item = ParseReact.Mutation.Create('Links', {
 				title: title,
 				url: url,
@@ -120,10 +135,13 @@ var ItemCreator = React.createClass({
 				createdBy: author,
 				votes: 1,
 				score: 0,
-				tags: tags
+				tags: tags,
+				ACL: acl
 			}).dispatch().then(function() {
 				React.findDOMNode(self.refs.title).value='';
 				React.findDOMNode(self.refs.url).value='';
+
+				ParseReact.Mutation.Increment(author,'posts').dispatch();
 				
 				self.setState({
 					error: null,

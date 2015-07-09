@@ -16,6 +16,7 @@ var LoginButton = require('./LoginButton.react.js');
 var LogoutButton = require('./LogoutButton.react.js');
 var ItemList = require('./ItemList.react.js');
 var ItemCreator = require('./ItemCreator.react.js');
+var InviteLogin = require('./InviteLogin.react.js');
 
 // Main Layout
 var AppMain = React.createClass({
@@ -23,7 +24,7 @@ var AppMain = React.createClass({
 
 	getInitialState: function() {
 		return {
-			appTitle: 'Cocoa Central'
+			appTitle: 'React News'
 		};
 	},
 
@@ -49,42 +50,43 @@ var AppMain = React.createClass({
 			itemCreator = <ItemCreator />;
 		} else {
 			loginButton = <LoginButton />;
-			itemCreator = null;
+			itemCreator = <InviteLogin />;
 		}
 
 		return (
-			<div className="container-fluid">
-				<div className="row">
-					<nav className="navbar navbar-default" role="navigation">
-						<div className="col-xs-12 col-xs-offset-0 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
-							<div className="navbar-header">
-								<Link to="app" className="navbar-brand">
-									<span className="icon-command"></span>
-									{this.state.appTitle}
-								</Link>
-							</div>
-							<ul className="nav navbar-nav navbar-right">
-								<li>
-									<a href="#" data-toggle="modal" data-target="#addModal">
-										<span className="icon-circle-plus"></span> Add Resource
-									</a>
-								</li>
-								{loginButton}
-							</ul>
-						</div>
-					</nav>
+			<div>
+				<nav className="navbar navbar-default navbar-fixed-top" role="navigation">
 					<div className="col-xs-12 col-xs-offset-0 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
-						
-						<div className="item-container">
-							<RouteHandler />
+						<div className="navbar-header">
+							<Link to="app" className="navbar-brand">
+								<span className="icon-command"></span>
+								{this.state.appTitle}
+							</Link>
 						</div>
-						<footer className="text-center text-muted">
-							Made with React + Parse
-						</footer>
+						<ul className="nav navbar-nav navbar-right">
+							<li>
+								<a href="#" data-toggle="modal" data-target="#addModal">
+									<span className="icon-circle-plus"></span> Add Resource
+								</a>
+							</li>
+							{loginButton}
+						</ul>
 					</div>
+				</nav>
+				<div className="container-fluid">
+					<div className="row">
+						<div className="col-xs-12 col-xs-offset-0 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+							<div className="context-container">
+								<RouteHandler />
+							</div>
+							<footer className="text-center text-muted">
+								Made with React + Parse
+							</footer>
+						</div>
+					</div>
+					{itemCreator}
+					<LoginForm />
 				</div>
-				{itemCreator}
-				<LoginForm />
 			</div>
 		);
 	}

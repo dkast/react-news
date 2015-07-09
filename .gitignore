@@ -21,6 +21,7 @@ coverage
 
 # Compiled binary addons (http://nodejs.org/api/addons.html)
 build/Release
+dist
 
 # Dependency directory
 # https://docs.npmjs.com/misc/faq#should-i-check-my-node-modules-folder-into-git
@@ -28,7 +29,22 @@ node_modules
 
 # Bundle
 js/bundle.js
+js/bundle.min.js
 
 # Sublime
 react-news.sublime-project
 react-news.sublime-workspace
+
+#Parse commmand line tool (windows)
+parse.exe
+cloud-code/parse.exe
+
+# Parse Cloud Hosting
+cloud-code/config
+cloud-code/public
+
+# Superstatic config
+superstatic.json
+
+#keys
+keys.json

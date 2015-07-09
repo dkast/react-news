@@ -1,11 +1,10 @@
 var React = require('react');
 var Parse = require('parse').Parse;
+// Router
+var Router = require('react-router');
+var Link = Router.Link;
 
 var LogoutButton = React.createClass({
-	logOut: function(e) {
-		e.preventDefault();
-		Parse.User.logOut();
-	},
 
 	render: function() {
 		return (
@@ -19,7 +18,7 @@ var LogoutButton = React.createClass({
 				</a>
 				<ul className="dropdown-menu" role="menu">
 					<li>
-						<a href="#">Account</a>
+						<Link to="account">Account</Link>
 					</li>
 					<li className="divider"></li>
 					<li>
@@ -31,6 +30,11 @@ var LogoutButton = React.createClass({
 				
 			</li>
 		);
+	},
+
+	logOut: function(e) {
+		e.preventDefault();
+		Parse.User.logOut();
 	}
 });
 
